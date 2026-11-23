@@ -35,6 +35,7 @@
 .visual-language>span{display:flex;align-items:center;gap:6px;padding:9px;font-size:11px}.visual-language strong{color:var(--primary);font-size:17px}.visual-language>b{color:var(--accent);font-size:19px}
 .visual-compass{justify-content:flex-start}.visual-compass em{margin-left:auto;padding:6px 8px;border-radius:999px;background:var(--chip);color:var(--accent);font-size:10px;font-style:normal;white-space:nowrap}
 .card-footer{padding-top:15px;border-top:1px solid var(--line)}
+.card-links{display:flex;align-items:center;flex-wrap:wrap;gap:12px 18px}.card-links .detail-link{padding:8px 12px;border-radius:10px;background:var(--chip);color:var(--primary)}.card-links .detail-link:hover{background:var(--soft)}
 .about-panel{background:radial-gradient(circle at 94% 85%,rgba(181,139,246,.33),transparent 43%),linear-gradient(125deg,#fff 5%,#f5f0ff 58%,#eee7ff)}
 .about-aside{border:1px solid var(--line);background:linear-gradient(145deg,rgba(255,255,255,.75),rgba(231,222,255,.83))}
 .contact-panel{background:radial-gradient(circle at 50% -22%,rgba(174,143,250,.27),transparent 51%),linear-gradient(135deg,#fff 8%,#f1edff 54%,#ebe5ff)}
