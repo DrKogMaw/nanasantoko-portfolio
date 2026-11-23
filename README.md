@@ -25,6 +25,8 @@ Connect this GitHub repository to a Cloudflare Pages project, then use:
 
 Cloudflare Pages installs dependencies and deploys the `dist/` folder. The `pnpm-lock.yaml` file makes dependency versions reproducible.
 
+Push changes to `development` to review them at `https://development.nanasantoko-portfolio.pages.dev/`. Publish the reviewed version to `main` when ready; Cloudflare then updates `https://nanasantoko.dev/`. Git history keeps previous versions available if a change needs to be reverted.
+
 ## Personalize
 
 - Edit the text and sections in `src/pages/index.astro`.

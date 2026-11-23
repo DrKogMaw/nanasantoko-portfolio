@@ -3,6 +3,8 @@ import '../styles/global.css';
 import GitHubIcon from '../components/GitHubIcon.astro';
 
 const githubUrl = 'https://github.com/DrKogMaw';
+const siteUrl = 'https://nanasantoko.dev/';
+const siteDescription = "Nanasantoko's developer portfolio. Explore desktop tools, learning apps, and web projects.";
 const year = new Date().getFullYear();
 const stack = [['TS', 'TypeScript'], ['KT', 'Kotlin'], ['NG', 'Angular'], ['.N', 'ASP.NET Core'], ['JS', 'JavaScript'], ['AS', 'Astro']];
 const filters = [['all', 'All (5)'], ['tools', 'Desktop & tools'], ['mobile', 'Mobile'], ['storefront', 'Storefront'], ['edtech', 'EdTech']];
@@ -20,8 +22,15 @@ const projects = [
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#f8f9ff" />
-    <meta name="description" content="Nanasantoko's developer portfolio. Explore desktop tools, learning apps, and web projects." />
+    <meta name="theme-color" content="#f9f7ff" />
+    <meta name="description" content={siteDescription} />
+    <link rel="canonical" href={siteUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Nanasantoko" />
+    <meta property="og:title" content="Nanasantoko — Developer Portfolio" />
+    <meta property="og:description" content={siteDescription} />
+    <meta property="og:url" content={siteUrl} />
+    <meta name="twitter:card" content="summary" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>Nanasantoko — Developer</title>
     <script is:inline>try { document.documentElement.dataset.theme = localStorage.getItem('portfolio-theme') || 'light'; } catch { document.documentElement.dataset.theme = 'light'; }</script>
