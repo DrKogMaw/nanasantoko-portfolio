@@ -1,0 +1,99 @@
+---
+import '../../styles/global.css';
+import GitHubIcon from '../../components/GitHubIcon.astro';
+
+const pageUrl = 'https://nanasantoko.dev/projects/ewear/';
+const repositoryUrl = 'https://github.com/DrKogMaw/ewear';
+const description = 'Explore Ewear, an everyday clothing storefront with a browsable collection, category filters, a persistent shopping bag, and staff catalog tools.';
+const year = new Date().getFullYear();
+const slides = [
+  { src: '/projects/ewear/light-hero.png', alt: 'Ewear light theme landing page with an everyday collection hero and shopping navigation.', caption: 'Storefront · light theme' },
+  { src: '/projects/ewear/light-collection.png', alt: 'Ewear light theme collection showing shirts and boots with product prices and add-to-bag buttons.', caption: 'Collection · light theme' },
+  { src: '/projects/ewear/light-bag.png', alt: 'Ewear light theme shopping bag with three pieces, quantity controls, and a subtotal.', caption: 'Shopping bag · light theme' },
+  { src: '/projects/ewear/dark-hero.png', alt: 'Ewear dark theme landing page with an everyday collection hero and shopping navigation.', caption: 'Storefront · dark theme' },
+  { src: '/projects/ewear/dark-collection.png', alt: 'Ewear dark theme collection showing shirts and boots with product prices and add-to-bag buttons.', caption: 'Collection · dark theme' },
+  { src: '/projects/ewear/dark-bag.png', alt: 'Ewear dark theme shopping bag with three pieces, quantity controls, and a subtotal.', caption: 'Shopping bag · dark theme' },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f9f7ff" />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={pageUrl} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Nanasantoko" />
+    <meta property="og:title" content="Ewear — Nanasantoko" />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:image" content="https://nanasantoko.dev/projects/ewear/light-hero.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>Ewear — Nanasantoko</title>
+    <script is:inline>try { document.documentElement.dataset.theme = localStorage.getItem('portfolio-theme') || 'light'; } catch { document.documentElement.dataset.theme = 'light'; }</script>
+  </head>
+  <body>
+    <div class="ambient ambient-one" aria-hidden="true"></div><div class="ambient ambient-two" aria-hidden="true"></div>
+    <header class="site-header" id="top"><div class="nav-shell">
+      <a class="brand" href="/" aria-label="Nanasantoko, home"><span class="brand-mark" aria-hidden="true">✦</span>Nanasantoko<span class="brand-dot">.</span></a>
+      <nav aria-label="Main navigation"><a href="/#work">Work</a><a href="/#about">About</a><a href="/#contact">Contact</a></nav>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark theme" aria-pressed="false"><span class="theme-sun" aria-hidden="true">☀</span><span class="theme-moon" aria-hidden="true">☾</span></button>
+    </div></header>
+
+    <main class="detail-main section-width">
+      <nav class="detail-breadcrumb" aria-label="Breadcrumb"><a href="/#work">Selected work</a><span aria-hidden="true">/</span><span aria-current="page">Ewear</span></nav>
+      <section class="detail-hero" aria-labelledby="detail-title">
+        <div class="detail-eyebrow"><span aria-hidden="true">◈</span> Clothing storefront · Web app</div>
+        <h1 id="detail-title">Ewear<span>.</span></h1>
+        <p>An everyday clothing storefront built around a focused collection. Browse shirts, pants, and boots, then save pieces in a shopping bag that stays on your device.</p>
+        <div class="detail-actions"><a class="button button-primary" href={repositoryUrl} target="_blank" rel="noopener noreferrer"><GitHubIcon /> View repository <span aria-hidden="true">↗</span></a><a class="button button-quiet" href="/#work">Back to all projects</a></div>
+      </section>
+
+      <section class="gallery-section" aria-labelledby="gallery-title">
+        <div class="gallery-intro"><div><p class="section-kicker">Inside the app</p><h2 id="gallery-title">A look at Ewear</h2></div><p>Screenshots from the storefront, shown in light and dark themes.</p></div>
+        <div class="gallery-shell" data-gallery>
+          <div class="gallery-stage">
+            {slides.map((slide, index) => <figure class="gallery-slide" data-slide hidden={index !== 0}>
+              <img src={slide.src} alt={slide.alt} loading={index === 0 ? 'eager' : 'lazy'} decoding="async" />
+              <figcaption>{slide.caption}</figcaption>
+            </figure>)}
+          </div>
+          <div class="gallery-controls"><button class="gallery-arrow" type="button" data-gallery-prev aria-label="Previous screenshot">←</button><span class="gallery-count" data-gallery-count aria-live="polite">1 of {slides.length}</span><div class="gallery-dots" role="group" aria-label="Choose screenshot">{slides.map((_, index) => <button type="button" data-gallery-dot={index} aria-label={`Show screenshot ${index + 1}`} aria-current={index === 0 ? 'true' : undefined}></button>)}</div><button class="gallery-arrow" type="button" data-gallery-next aria-label="Next screenshot">→</button></div>
+        </div>
+      </section>
+
+      <section class="detail-overview" aria-labelledby="overview-title"><div><p class="section-kicker">The project</p><h2 id="overview-title">A collection built for easy browsing.</h2><p>Ewear brings together product photography, category browsing, and a shopping bag in a responsive storefront. Visitors can switch between light and dark themes, while sign-in and staff tools support catalog management behind the scenes.</p></div><ul aria-label="Ewear features"><li>Shirts, pants, and boots filters</li><li>Shopping bag saved on the device</li><li>Light and dark themes</li><li>Sign-in and staff catalog tools</li></ul></section>
+    </main>
+    <footer class="site-footer section-width"><span>© {year} Nanasantoko</span><a href="#top">Back to top ↑</a></footer>
+    <script>
+      const toggle = document.querySelector<HTMLButtonElement>('#theme-toggle');
+      const syncTheme = () => { const dark = document.documentElement.dataset.theme === 'dark'; if (toggle) { toggle.setAttribute('aria-pressed', String(dark)); toggle.setAttribute('aria-label', `Switch to ${dark ? 'light' : 'dark'} theme`); } };
+      syncTheme();
+      toggle?.addEventListener('click', () => { const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'; document.documentElement.dataset.theme = next; try { localStorage.setItem('portfolio-theme', next); } catch {} syncTheme(); });
+      const gallery = document.querySelector<HTMLElement>('[data-gallery]');
+      const gallerySlides = [...(gallery?.querySelectorAll<HTMLElement>('[data-slide]') ?? [])];
+      const galleryDots = [...(gallery?.querySelectorAll<HTMLButtonElement>('[data-gallery-dot]') ?? [])];
+      const galleryCount = gallery?.querySelector<HTMLElement>('[data-gallery-count]');
+      let currentSlide = 0;
+      const showSlide = (index: number) => { currentSlide = (index + gallerySlides.length) % gallerySlides.length; gallerySlides.forEach((slide, slideIndex) => { slide.hidden = slideIndex !== currentSlide; }); galleryDots.forEach((dot, dotIndex) => { if (dotIndex === currentSlide) dot.setAttribute('aria-current', 'true'); else dot.removeAttribute('aria-current'); }); if (galleryCount) galleryCount.textContent = `${currentSlide + 1} of ${gallerySlides.length}`; };
+      gallery?.querySelector('[data-gallery-prev]')?.addEventListener('click', () => showSlide(currentSlide - 1));
+      gallery?.querySelector('[data-gallery-next]')?.addEventListener('click', () => showSlide(currentSlide + 1));
+      galleryDots.forEach((dot, index) => dot.addEventListener('click', () => showSlide(index)));
+    </script>
+  </body>
+</html>
+
+<style>
+  .detail-main{padding-top:70px;padding-bottom:80px}.detail-breadcrumb{display:flex;align-items:center;gap:10px;margin-bottom:38px;color:var(--muted);font-size:12px;font-weight:700}.detail-breadcrumb a{color:var(--primary);text-decoration:none}.detail-breadcrumb a:hover{text-decoration:underline}
+  .detail-hero{max-width:850px;margin-bottom:68px}.detail-eyebrow,.section-kicker{color:var(--accent);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.detail-eyebrow{display:flex;align-items:center;gap:9px;margin-bottom:20px}.detail-eyebrow span{display:grid;place-items:center;width:29px;height:29px;border-radius:9px;background:var(--chip);color:var(--primary);font-size:18px}.detail-hero h1{margin-bottom:21px}.detail-hero h1 span{display:inline;color:var(--primary)}.detail-hero>p{max-width:730px;color:var(--muted);font-size:18px;line-height:1.7}.detail-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}.detail-actions svg{width:18px;height:18px}
+  .gallery-section{margin-bottom:72px}.gallery-intro{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:20px}.gallery-intro h2,.detail-overview h2{margin:0;font-size:clamp(30px,3vw,42px);letter-spacing:-.03em;line-height:1.18}.gallery-intro p:last-child{max-width:320px;margin:0;color:var(--muted);font-size:13px;line-height:1.6}.section-kicker{margin:0 0 10px}
+  .gallery-shell{max-width:1000px;margin:auto;padding:16px;border:1px solid var(--line);border-radius:25px;background:radial-gradient(circle at 88% 8%,rgba(181,139,246,.24),transparent 42%),linear-gradient(135deg,var(--panel-solid),var(--soft));box-shadow:0 24px 50px -30px var(--shadow)}.gallery-stage{overflow:hidden;border:1px solid var(--line);border-radius:16px;background:var(--soft)}.gallery-slide{margin:0}.gallery-slide[hidden]{display:none}.gallery-slide img{display:block;width:100%;height:auto;aspect-ratio:1263/773;object-fit:contain;background:var(--soft)}.gallery-slide figcaption{padding:10px 15px;border-top:1px solid var(--line);color:var(--muted);font-size:12px;font-weight:700}.gallery-controls{display:flex;align-items:center;justify-content:center;gap:18px;padding:15px 2px 0}.gallery-arrow{width:38px;height:38px;border:1px solid var(--line);border-radius:50%;background:var(--panel);color:var(--primary);font-size:20px;cursor:pointer}.gallery-arrow:hover,.gallery-arrow:focus-visible{background:var(--chip)}.gallery-count{min-width:43px;color:var(--muted);font-size:12px;font-weight:700}.gallery-dots{display:flex;gap:7px}.gallery-dots button{width:9px;height:9px;padding:0;border:0;border-radius:50%;background:var(--line);cursor:pointer}.gallery-dots button[aria-current=true]{width:24px;border-radius:999px;background:var(--primary)}
+  .detail-overview{display:grid;grid-template-columns:1.25fr .75fr;gap:8%;padding:clamp(28px,5vw,54px);border:1px solid var(--line);border-radius:26px;background:radial-gradient(circle at 94% 80%,rgba(181,139,246,.25),transparent 42%),linear-gradient(125deg,var(--panel-solid),var(--soft))}.detail-overview p:last-child{max-width:70ch;margin:18px 0 0;color:var(--muted);line-height:1.8}.detail-overview ul{display:grid;align-content:center;gap:10px;margin:0;padding:0;list-style:none}.detail-overview li{padding:13px 15px;border:1px solid var(--line);border-radius:12px;background:var(--panel);font-size:13px;font-weight:700}.detail-overview li:before{content:'✓';margin-right:9px;color:var(--primary)}
+  :global(:root[data-theme=dark]) .gallery-shell{background:radial-gradient(circle at 88% 8%,rgba(120,74,187,.29),transparent 42%),linear-gradient(135deg,var(--panel-solid),var(--soft))}
+  :global(:root[data-theme=dark]) .detail-overview{background:radial-gradient(circle at 94% 80%,rgba(120,74,187,.27),transparent 42%),linear-gradient(125deg,var(--panel-solid),var(--soft))}
+  @media(max-width:760px){.detail-main{padding-top:45px}.gallery-intro{display:block}.gallery-intro p:last-child{margin-top:12px}.detail-overview{grid-template-columns:1fr;gap:28px}.gallery-section{margin-bottom:52px}.detail-hero{margin-bottom:52px}}
+  @media(max-width:620px){.detail-hero h1{font-size:clamp(42px,11vw,60px)}.detail-hero>p{font-size:16px}.gallery-shell{padding:8px;border-radius:18px}.gallery-controls{gap:11px}.gallery-arrow{width:34px;height:34px}.detail-overview{padding:24px}}
+</style>
