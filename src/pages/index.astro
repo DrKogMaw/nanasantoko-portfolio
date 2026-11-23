@@ -3,6 +3,43 @@ import '../styles/global.css';
 
 const githubUrl = 'https://github.com/DrKogMaw';
 const year = new Date().getFullYear();
+const projects = [
+  {
+    name: 'DeskDrawer Inventory',
+    category: 'Desktop app',
+    description: 'A local inventory for the things in your desk drawers, with file attachments, photo previews, and portable JSON backups.',
+    tags: ['TypeScript', 'Local storage'],
+    url: 'https://github.com/DrKogMaw/desk-drawer-inventory',
+  },
+  {
+    name: 'ZiAr',
+    category: 'Windows + Android',
+    description: 'File transfers between a Windows PC and Android phone, or between two phones, over local Wi-Fi with a pairing code.',
+    tags: ['Kotlin', 'Local network'],
+    url: 'https://github.com/DrKogMaw/ZiAr',
+  },
+  {
+    name: 'Ewear',
+    category: 'Storefront',
+    description: 'A clothing storefront with category filters, a persistent shopping bag, phone-based sign-in, and tools for staff to manage products.',
+    tags: ['Angular', 'ASP.NET Core'],
+    url: 'https://github.com/DrKogMaw/ewear',
+  },
+  {
+    name: 'EduSpark',
+    category: 'Learning prototype',
+    description: 'A local-first reading, spelling, and vocabulary practice app for children ages 6–10, with English and Georgian modes.',
+    tags: ['JavaScript', 'Education'],
+    url: 'https://github.com/DrKogMaw/eduspark',
+  },
+  {
+    name: 'Credit Compass Georgia',
+    category: 'Static MVP',
+    description: 'An estimator for how completed university courses may map to Georgian curricula. Results are estimates, not official credit decisions.',
+    tags: ['Curriculum data', 'Planning'],
+    url: 'https://github.com/DrKogMaw/credit-compass-georgia',
+  },
+];
 ---
 
 <!doctype html>
@@ -11,14 +48,14 @@ const year = new Date().getFullYear();
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#f5f0e6" />
-    <meta name="description" content="Nana Santoko's developer portfolio. Explore work, background, and ways to connect." />
+    <meta name="description" content="Nanasantoko's developer portfolio. Explore desktop tools, learning apps, and web projects." />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>Nana Santoko — Developer</title>
+    <title>Nanasantoko — Developer</title>
   </head>
   <body>
     <div class="page-shell">
       <header class="site-header">
-        <a class="wordmark" href="#top" aria-label="Nana Santoko, back to top">N<span class="wordmark-dot">.</span>S</a>
+        <a class="wordmark" href="#top" aria-label="Nanasantoko, back to top">Nanasantoko<span class="wordmark-dot">.</span></a>
         <nav aria-label="Main navigation">
           <a href="#about">About</a>
           <a href="#work">Work</a>
@@ -29,15 +66,15 @@ const year = new Date().getFullYear();
       <main id="top">
         <section class="hero" aria-labelledby="hero-title">
           <div class="hero-content">
-            <p class="intro">Hello, I'm Nana Santoko.</p>
+            <p class="intro">Hello, I'm Nanasantoko.</p>
             <h1 id="hero-title">I make things<br /><em>for the web.</em></h1>
-            <p class="hero-description">A developer portfolio taking shape, one thoughtful project at a time.</p>
+            <p class="hero-description">I build practical tools and digital experiences, from desktop utilities to learning apps.</p>
             <div class="hero-actions">
               <a class="button button-primary" href="#work">Explore my work <span aria-hidden="true">↗</span></a>
               <a class="text-link" href={githubUrl} target="_blank" rel="noopener noreferrer">Find me on GitHub <span aria-hidden="true">↗</span></a>
             </div>
           </div>
-          <div class="hero-mark" aria-hidden="true"><span>N</span><span>S</span></div>
+          <div class="hero-mark" aria-hidden="true"><span></span><span></span></div>
         </section>
 
         <section class="about section" id="about" aria-labelledby="about-title">
@@ -45,32 +82,42 @@ const year = new Date().getFullYear();
             <h2 id="about-title">A little about me</h2>
           </div>
           <div class="section-copy">
-            <p>I'm Nana, a developer building a home for my work on the web.</p>
-            <p>This space is just getting started. As I add projects, you'll be able to see what I've made and how I approach each build.</p>
+            <p>I'm Nanasantoko, a developer who likes turning useful ideas into working software.</p>
+            <p>My projects explore everyday organization, local file sharing, education, shopping, and university course planning. Each one starts with a real task and a clearer way to get it done.</p>
           </div>
         </section>
 
         <section class="work section" id="work" aria-labelledby="work-title">
           <div class="work-heading">
             <h2 id="work-title">Selected work</h2>
-            <p>Good work deserves a proper introduction. Project stories are on the way.</p>
+            <p>Five projects, each built around a different problem. Explore the source and details on GitHub.</p>
           </div>
-          <div class="work-placeholder">
-            <div class="placeholder-orbit" aria-hidden="true"><span></span></div>
-            <p>Projects coming soon.</p>
-            <a href={githubUrl} target="_blank" rel="noopener noreferrer">See my GitHub profile <span aria-hidden="true">↗</span></a>
+          <div class="project-grid">
+            {projects.map((project) => (
+              <article class="project-card">
+                <p class="project-category">{project.category}</p>
+                <h3>{project.name}</h3>
+                <p class="project-description">{project.description}</p>
+                <div class="project-bottom">
+                  <ul class="project-tags" aria-label={`${project.name} topics`}>
+                    {project.tags.map((tag) => <li>{tag}</li>)}
+                  </ul>
+                  <a class="project-link" href={project.url} target="_blank" rel="noopener noreferrer" aria-label={`View ${project.name} repository on GitHub`}>View repository <span aria-hidden="true">↗</span></a>
+                </div>
+              </article>
+            ))}
           </div>
         </section>
 
         <section class="contact section" id="contact" aria-labelledby="contact-title">
           <h2 id="contact-title">Let's connect.</h2>
-          <p>Have a look around my GitHub profile while this portfolio grows.</p>
+          <p>Explore more of my work and follow what I'm building next.</p>
           <a class="button button-light" href={githubUrl} target="_blank" rel="noopener noreferrer">Visit GitHub <span aria-hidden="true">↗</span></a>
         </section>
       </main>
 
       <footer class="site-footer">
-        <span>© {year} Nana Santoko</span>
+        <span>© {year} Nanasantoko</span>
         <a href="#top">Back to top ↑</a>
       </footer>
     </div>

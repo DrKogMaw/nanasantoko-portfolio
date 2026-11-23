@@ -1,6 +1,6 @@
-# Nana Santoko portfolio
+# Nanasantoko portfolio
 
-A simple, static Astro portfolio starter for Nana Santoko. The site currently includes an introduction, about section, work placeholder, and a link to the known GitHub profile. No projects or contact details have been invented.
+A static Astro portfolio for Nanasantoko. The site includes an introduction, about section, five selected public projects, and a link to the known GitHub profile. Project descriptions are based on their repository READMEs. No contact details have been invented.
 
 ## Run locally
 
@@ -28,6 +28,6 @@ Cloudflare Pages installs dependencies and deploys the `dist/` folder. The `pnpm
 ## Personalize
 
 - Edit the text and sections in `src/pages/index.astro`.
-- Replace the "Projects coming soon" block with real project details and links.
+- Edit the project entries in `src/pages/index.astro` as the projects evolve.
 - Add a verified email or other contact link when available.
 - Adjust styles in `src/styles/global.css`.
