@@ -1,20 +1,21 @@
 ---
 import '../styles/global.css';
+import ProjectImage from '../components/ProjectImage.astro';
 import GitHubIcon from '../components/GitHubIcon.astro';
 
 const githubUrl = 'https://github.com/DrKogMaw';
 const siteUrl = 'https://nanasantoko.dev/';
 const siteDescription = "Nanasantoko's developer portfolio. Explore desktop tools, learning apps, and web projects.";
 const year = new Date().getFullYear();
-const stack = [['TS', 'TypeScript'], ['KT', 'Kotlin'], ['NG', 'Angular'], ['.N', 'ASP.NET Core'], ['JS', 'JavaScript'], ['AS', 'Astro']];
-const filters = [['all', 'All (5)'], ['tools', 'Desktop & tools'], ['mobile', 'Mobile'], ['storefront', 'Storefront'], ['edtech', 'EdTech']];
+const stack = ['TypeScript', 'Kotlin', 'Angular', 'ASP.NET Core', 'JavaScript', 'Astro'];
 const projects = [
-  { name: 'DeskDrawer Inventory', category: 'Desktop app', filter: 'tools', description: 'A local inventory for the things in your desk drawers, with file attachments, photo previews, and portable JSON backups.', tags: ['TypeScript', 'Local storage'], url: 'https://github.com/DrKogMaw/desk-drawer-inventory', detailUrl: '/projects/deskdrawer-inventory/', symbol: '▦' },
-  { name: 'ZiAr', category: 'Windows + Android', filter: 'mobile', description: 'File transfers between a Windows PC and Android phone, or between two phones, over local Wi-Fi with a pairing code.', tags: ['Kotlin', 'Local network'], url: 'https://github.com/DrKogMaw/ZiAr', symbol: '↗' },
-  { name: 'Ewear', category: 'Storefront', filter: 'storefront', description: 'A clothing storefront with category filters, a persistent shopping bag, phone-based sign-in, and tools for staff to manage products.', tags: ['Angular', 'ASP.NET Core'], url: 'https://github.com/DrKogMaw/ewear', detailUrl: '/projects/ewear/', symbol: '◈' },
-  { name: 'EduSpark', category: 'Learning prototype', filter: 'edtech', description: 'A local-first reading, spelling, and vocabulary practice app for children ages 6–10, with English and Georgian modes.', tags: ['JavaScript', 'Education'], url: 'https://github.com/DrKogMaw/eduspark', detailUrl: '/projects/eduspark/', symbol: '✳' },
-  { name: 'Credit Compass Georgia', category: 'Static MVP', filter: 'tools', description: 'An estimator for how completed university courses may map to Georgian curricula. Results are estimates, not official credit decisions.', tags: ['Curriculum data', 'Planning'], url: 'https://github.com/DrKogMaw/credit-compass-georgia', detailUrl: '/projects/credit-compass-georgia/', symbol: '◎' },
+  { name: 'DeskDrawer Inventory', filter: 'tools', description: 'A local inventory for the things in your desk drawers, with file attachments, photo previews, and portable JSON backups.', tags: ['TypeScript', 'Local storage'], url: 'https://github.com/DrKogMaw/desk-drawer-inventory', detailUrl: '/projects/deskdrawer-inventory/', image: '/projects/deskdrawer-inventory/dark-item-form.png', alt: 'DeskDrawer item editor with quantity, notes, and attachments.' },
+  { name: 'ZiAr', filter: 'mobile', description: 'File transfers between a Windows PC and Android phone, or between two phones, over local Wi-Fi with a pairing code.', tags: ['Kotlin', 'Local network'], url: 'https://github.com/DrKogMaw/ZiAr' },
+  { name: 'Ewear', filter: 'storefront', description: 'A clothing storefront with category filters, a persistent shopping bag, phone-based sign-in, and tools for staff to manage products.', tags: ['Angular', 'ASP.NET Core'], url: 'https://github.com/DrKogMaw/ewear', detailUrl: '/projects/ewear/', image: '/projects/ewear/light-hero.png', alt: 'Ewear clothing collection with its warm-toned storefront photography.' },
+  { name: 'EduSpark', filter: 'edtech', description: 'A local-first reading, spelling, and vocabulary practice app for children ages 6–10, with English and Georgian modes.', tags: ['JavaScript', 'Education'], url: 'https://github.com/DrKogMaw/eduspark', detailUrl: '/projects/eduspark/', image: '/projects/eduspark/typosnap.jpg', alt: 'EduSpark spelling activity with a volcano illustration and letter choices.' },
+  { name: 'Credit Compass Georgia', filter: 'tools', description: 'An estimator for how completed university courses may map to Georgian curricula. Results are estimates, not official credit decisions.', tags: ['Curriculum data', 'Planning'], url: 'https://github.com/DrKogMaw/credit-compass-georgia', detailUrl: '/projects/credit-compass-georgia/', image: '/projects/credit-compass-georgia/course-matches.png', alt: 'Credit Compass comparing completed courses with possible matches.' },
 ];
+const filters = [['all', `All (${projects.length})`], ['tools', 'Desktop & tools'], ['mobile', 'Mobile'], ['storefront', 'Storefront'], ['edtech', 'EdTech']];
 ---
 
 <!doctype html>
@@ -35,26 +36,102 @@ const projects = [
     <title>Nanasantoko — Developer</title>
     <script is:inline>try { document.documentElement.dataset.theme = localStorage.getItem('portfolio-theme') || 'light'; } catch { document.documentElement.dataset.theme = 'light'; }</script>
   </head>
-  <body>
+  <body id="top">
     <div class="ambient ambient-one" aria-hidden="true"></div><div class="ambient ambient-two" aria-hidden="true"></div>
-    <header class="site-header" id="top"><div class="nav-shell">
+    <header class="site-header"><div class="nav-shell">
       <a class="brand" href="#top" aria-label="Nanasantoko, back to top"><span class="brand-mark" aria-hidden="true">✦</span>Nanasantoko<span class="brand-dot">.</span></a>
       <nav aria-label="Main navigation"><a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
       <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark theme" aria-pressed="false"><span class="theme-sun" aria-hidden="true">☀</span><span class="theme-moon" aria-hidden="true">☾</span></button>
     </div></header>
     <main>
       <section class="hero section-width" aria-labelledby="hero-title">
-        <div class="hero-copy"><p class="availability"><span class="status-dot"></span>Developer portfolio · 5 public projects</p><h1 id="hero-title">I make things <span>for the web.</span></h1><p class="hero-description">I'm Nanasantoko. I build practical tools and digital experiences, from desktop utilities to learning apps.</p><div class="hero-actions"><a class="button button-primary" href="#work">Explore my work <span aria-hidden="true">↗</span></a><a class="button button-quiet" href={githubUrl} target="_blank" rel="noopener noreferrer">Find me on GitHub <span aria-hidden="true">↗</span></a></div><div class="hero-notes"><span>Desktop & mobile</span><span>Learning & web</span><span>Local-first projects</span></div></div>
-        <div class="stack-panel"><div class="panel-heading"><div class="panel-icon" aria-hidden="true">⌘</div><div><h2>Core stack</h2><p>Technologies used across these projects</p></div></div><div class="stack-grid">{stack.map(([short, name]) => <div class="stack-item"><span class="stack-short" aria-hidden="true">{short}</span><span>{name}</span></div>)}</div><div class="terminal-line"><span aria-hidden="true">›</span><code>nanasantoko / projects</code><span class="terminal-count">5 found</span></div></div>
+        <div class="hero-copy">
+          <h1 id="hero-title">I build tools for <span>everyday tasks.</span></h1>
+          <p class="hero-description">I'm Nanasantoko. I make desktop, mobile, and web apps for the things people do every day, from sharing files to planning a university transfer.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#work">Explore my work <span aria-hidden="true">↓</span></a>
+            <a class="hero-github" href={githubUrl} target="_blank" rel="noopener noreferrer"><GitHubIcon /> GitHub</a>
+          </div>
+        </div>
+        <a class="feature-link" href={projects[0].detailUrl}>
+          <div class="feature-stage" aria-hidden="true">
+            <div class="feature-overview">
+              <ProjectImage src="/projects/deskdrawer-inventory/light-overview.png" alt="" sizes="(max-width: 800px) 76vw, 500px" priority />
+            </div>
+            <div class="feature-form">
+              <ProjectImage src="/projects/deskdrawer-inventory/dark-item-form.png" alt="" sizes="(max-width: 800px) 68vw, 480px" priority />
+            </div>
+          </div>
+          <div class="feature-caption">
+            <div>
+              <h2>DeskDrawer Inventory</h2>
+              <p>Find the right drawer, check stock, and keep photos with each item.</p>
+            </div>
+            <span class="feature-arrow" aria-hidden="true">→</span>
+          </div>
+        </a>
       </section>
-      <section class="work section-width" id="work" aria-labelledby="work-title"><div class="section-intro"><div><h2 id="work-title">Selected work</h2><p>Five projects, each built around a different problem. Explore the source and details on GitHub.</p></div></div><div class="filters" role="group" aria-label="Filter projects">{filters.map(([value, label], index) => <button class:list={['filter-button', { active: index === 0 }]} type="button" data-filter={value} aria-pressed={index === 0 ? 'true' : 'false'}>{label}</button>)}</div><div class="project-grid">{projects.map((project, index) => <article class:list={['project-card', { featured: index === 0 }]} data-category={project.filter}><div class="card-top"><span class="card-icon" aria-hidden="true">{project.symbol}</span><span class="card-category">{project.category}</span></div><div class="card-body"><h3>{project.name}</h3><p>{project.description}</p></div><div class="project-visual" aria-hidden="true">
-  {index === 0 ? <><div class="visual-heading"><span>drawer_01://office-supplies</span><span>offline JSON</span></div><div class="drawer-grid"><span>▤<strong>Drawers</strong></span><span>▣<strong>Attachments</strong></span><span>▧<strong>Backups</strong></span></div></> : null}
-  {index === 1 ? <div class="visual-bridge"><span class="visual-end"><b>▣</b><span><strong>PC Host</strong><small>Windows</small></span></span><span class="visual-link"><b>⌁</b><small>Local Wi-Fi</small></span><span class="visual-end"><span><strong>Phone</strong><small>Android</small></span><b>▯</b></span></div> : null}
-  {index === 2 ? <><div class="visual-heading"><strong>Store operations</strong><span>Staff tools</span></div><div class="visual-row"><span>◈ &nbsp; Catalog & inventory</span><strong>Shopping bag</strong></div></> : null}
-  {index === 3 ? <div class="visual-language"><span><strong>EN</strong> Spelling</span><b>⇄</b><span><strong>GE</strong> ქართული</span></div> : null}
-  {index === 4 ? <div class="visual-compass"><b>◎</b><span><strong>Curriculum mapping</strong><small>Georgian higher education</small></span><em>ECTS planner</em></div> : null}
-</div><div class="card-footer"><ul class="project-tags" aria-label={`${project.name} technologies`}>{project.tags.map((tag) => <li>{tag}</li>)}</ul><div class="card-links">{project.detailUrl && <a class="detail-link" href={project.detailUrl}>View project <span aria-hidden="true">↗</span></a>}<a href={project.url} target="_blank" rel="noopener noreferrer" aria-label={`View ${project.name} repository on GitHub`}><GitHubIcon />View repository <span aria-hidden="true">↗</span></a></div></div></article>)}</div></section>
-      <section class="about section-width" id="about" aria-labelledby="about-title"><div class="about-panel"><div><h2 id="about-title">A little about me</h2><p class="about-lead">I'm Nanasantoko, a developer who likes turning useful ideas into working software.</p><p>My projects explore everyday organization, local file sharing, education, shopping, and university course planning. Each one starts with a real task and a clearer way to get it done.</p></div><div class="about-aside"><span class="aside-orbit" aria-hidden="true">✦</span><strong>Useful ideas.<br />Working software.</strong><span>Explore the projects to see the details.</span></div></div></section>
+
+      <section class="work section-width" id="work" aria-labelledby="work-title">
+        <div class="work-heading">
+          <h2 id="work-title">Selected work</h2>
+          <div class="filters" role="group" aria-label="Filter projects">
+            {filters.map(([value, label], index) => (
+              <button class:list={['filter-button', {active: index === 0}]} type="button" data-filter={value} aria-pressed={index === 0}>{label}</button>
+            ))}
+          </div>
+        </div>
+
+        <div class="project-grid">
+          {projects.map((project) => (
+            <article class="project-card" data-category={project.filter}>
+              {project.image ? (
+                <a class="card-media" href={project.detailUrl} aria-label={`Explore ${project.name}`}>
+                  <ProjectImage src={project.image} alt={project.alt} sizes="(max-width: 640px) 92vw, (max-width: 1000px) 46vw, 390px" />
+                </a>
+              ) : (
+                <div class="transfer-diagram" role="img" aria-label="ZiAr connects Windows and Android over local Wi-Fi">
+                  <div class="device">
+                    <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="7" width="38" height="27" rx="3"/><path d="M16 41h16M24 34v7"/></svg>
+                    <span>Windows</span>
+                  </div>
+                  <div class="transfer-path"><span>Local Wi-Fi</span><i aria-hidden="true"></i></div>
+                  <div class="device">
+                    <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="13" y="3" width="22" height="42" rx="4"/><path d="M21 8h6M22 39h4"/></svg>
+                    <span>Android</span>
+                  </div>
+                </div>
+              )}
+              <div class="card-copy">
+                <h3>{project.name}</h3>
+                <p>{project.description}</p>
+                <ul class="project-tags" aria-label={`${project.name} technologies`}>
+                  {project.tags.map((tag) => <li>{tag}</li>)}
+                </ul>
+                <div class="card-links">
+                  {project.detailUrl && <a class="detail-link" href={project.detailUrl} aria-label={`View ${project.name} project`}>View project →</a>}
+                  <a href={project.url} target="_blank" rel="noopener noreferrer" aria-label={`View ${project.name} repository on GitHub`}>
+                    <GitHubIcon /> View repository
+                  </a>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="about section-width" id="about" aria-labelledby="about-title">
+        <div class="about-panel">
+          <div>
+            <h2 id="about-title">A little about me</h2>
+            <p>Local storage and file sharing are recurring themes in my work. DeskDrawer keeps inventory on your computer and lets you take a JSON backup with you. ZiAr pairs devices over local Wi-Fi to move files between them.</p>
+          </div>
+          <div class="stack">
+            <h3>Core stack</h3>
+            <ul>{stack.map((name) => <li>{name}</li>)}</ul>
+          </div>
+        </div>
+      </section>
       <section class="contact section-width" id="contact" aria-labelledby="contact-title"><div class="contact-panel"><div class="contact-symbol" aria-hidden="true">✦</div><h2 id="contact-title">Let's connect.</h2><p>Explore more of my work and follow what I'm building next.</p><a class="button button-primary" href={githubUrl} target="_blank" rel="noopener noreferrer">Visit GitHub <span aria-hidden="true">↗</span></a><span class="contact-handle">@DrKogMaw</span></div></section>
     </main>
     <footer class="site-footer section-width"><span>© {year} Nanasantoko</span><a href="#top">Back to top ↑</a></footer>
